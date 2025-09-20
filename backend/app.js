@@ -5,6 +5,7 @@ const session=require('express-session')
 const mongoose=require('mongoose')
 const PORT=3000;
 const DB_PATH = "mongodb+srv://ranaahmadali860:ranaahmadali860@cluster0.wegqf6w.mongodb.net/test?retryWrites=true&w=majority&appName=Cluster0";
+const route=require('../backend/Routes/AuthRoute')
 
 app.use(express.json())
 app.use(express.urlencoded({
@@ -26,6 +27,7 @@ app.use(session({
         maxAge:1000*60*60*24
     }
 }))
+app.use(route)
 
 mongoose.connect(DB_PATH).then(()=>{
     app.listen(PORT,()=>{
